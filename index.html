@@ -35,6 +35,61 @@ body{background:var(--bg);color:var(--ink);font-family:"Tajawal","Cairo",system-
 .arrow{color:var(--border);align-self:center}
 .panels{padding:16px}
 
+/* ===== تبويب الكاميرا ===== */
+#tab0 .cam{max-width:720px;margin:auto;display:flex;flex-direction:column;gap:14px;padding-block:8px}
+#tab0 h1{font-family:"Cairo",system-ui,sans-serif;font-weight:800;font-size:clamp(1.4rem,1.1rem + 1.2vw,1.9rem);margin:0}
+#tab0 .cam-head p{color:var(--muted);margin:4px 0 0;font-size:.95rem;line-height:1.6}
+#tab0 .gps{align-self:flex-start;display:flex;gap:8px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:.85rem;font-variant-numeric:tabular-nums;direction:rtl}
+#tab0 .gps .dot{width:10px;height:10px;border-radius:50%;background:#d4a017;box-shadow:0 0 0 3px rgba(212,160,23,.2)}
+#tab0 .gps[data-state="ok"] .dot{background:#1f9d55;box-shadow:0 0 0 3px rgba(31,157,85,.2)}
+#tab0 .gps[data-state="err"] .dot{background:var(--danger);box-shadow:0 0 0 3px rgba(180,72,58,.2)}
+#tab0 .viewer{position:relative;background:#0b0f0e;border-radius:18px;overflow:hidden;min-height:260px;display:grid;place-items:center}
+#tab0 video{display:none;width:100%;max-height:65vh;object-fit:contain;background:#000}
+#tab0 .viewer.live video{display:block}
+#tab0 .viewer.live .vf-empty{display:none}
+#tab0 .vf-empty{display:flex;flex-direction:column;align-items:center;gap:12px;padding:28px 16px;text-align:center}
+#tab0 .cam-open{background:var(--accent);color:var(--accent-ink);border:0;border-radius:14px;padding:18px 34px;font:inherit;font-size:1.2rem;font-weight:700;cursor:pointer}
+#tab0 .cam-open input{display:none}
+#tab0 .cam-alt{color:#cfe3da;font-size:.9rem;text-decoration:underline;cursor:pointer;background:none;border:0;font-family:inherit}
+#tab0 .cam-alt input{display:none}
+#tab0 .cam-live{font-size:.8rem;opacity:.8}
+#tab0 .cam-tip{color:#cfe3da;font-size:.8rem;margin:0;max-width:44ch;line-height:1.6}
+#tab0 .cam-err{color:#f3b3a7;font-size:.85rem;max-width:40ch;margin:0;line-height:1.6}
+#tab0 .flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;transition:opacity .25s}
+#tab0 .flash.on{opacity:.75;transition:none}
+#tab0 .shot-count{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.6);color:#fff;border-radius:999px;padding:4px 12px;font-size:.85rem;font-variant-numeric:tabular-nums}
+#tab0 .controls{display:flex;justify-content:center;align-items:center;gap:36px}
+#tab0 .shutter{width:76px;height:76px;border-radius:50%;background:#fff;border:6px solid var(--accent);box-shadow:0 0 0 3px var(--surface),0 4px 14px rgba(0,0,0,.25);cursor:pointer}
+#tab0 .shutter:active{transform:scale(.93)}
+#tab0 .round{width:48px;height:48px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--ink);font-size:1.2rem;cursor:pointer}
+#tab0 .note{display:flex;flex-direction:column;gap:6px;font-size:.85rem;color:var(--muted)}
+#tab0 .note input{font:inherit;font-size:1rem;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--ink)}
+#tab0 .gal{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:12px}
+#tab0 .gal-head{display:flex;justify-content:space-between;align-items:center}
+#tab0 .link-btn{background:none;border:0;color:var(--accent);font:inherit;font-weight:700;cursor:pointer}
+#tab0 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+#tab0 .ph{position:relative;border-radius:12px;overflow:hidden;background:var(--surface-2);aspect-ratio:3/4;max-width:100%;border:3px solid transparent;cursor:pointer}
+#tab0 .ph.sel{border-color:var(--accent)}
+#tab0 .ph img{width:100%;height:100%;object-fit:cover;display:block}
+#tab0 .ph .chk{position:absolute;top:6px;right:6px;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.85);border:2px solid #fff;display:grid;place-items:center;font-weight:800;color:transparent;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+#tab0 .ph.sel .chk{background:var(--accent);color:#fff}
+#tab0 .ph .tag{position:absolute;inset-inline:0;bottom:0;padding:5px 6px;font-size:.72rem;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.75));font-variant-numeric:tabular-nums;direction:ltr;text-align:left}
+#tab0 .ph .ok{position:absolute;top:6px;left:6px;background:#1f9d55;color:#fff;border-radius:999px;font-size:.72rem;padding:2px 8px;font-weight:700}
+#tab0 .ph .ok.warn{background:#b7791f}
+#tab0 .ph .view{position:absolute;bottom:26px;left:6px;background:rgba(0,0,0,.55);color:#fff;border:0;border-radius:8px;font-size:.75rem;padding:3px 8px;cursor:pointer}
+#tab0 .gal-empty{color:var(--muted);text-align:center;margin:6px 0;font-size:.9rem}
+#tab0 .gal-actions{display:flex;flex-wrap:wrap;gap:8px}
+#tab0 .act{flex:1;min-width:140px;border:1px solid var(--border);background:var(--surface-2);color:var(--ink);border-radius:10px;padding:11px;font:inherit;font-weight:700;cursor:pointer}
+#tab0 .act:disabled{opacity:.45;cursor:default}
+#tab0 .primary-act{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);flex-basis:100%}
+#tab0 .danger-act{color:var(--danger)}
+#tab0 .hint-s{color:var(--muted);font-size:.8rem;margin:0}
+#tab0 .lightbox{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.92);display:flex;flex-direction:column;padding:env(safe-area-inset-top,0px) 12px env(safe-area-inset-bottom,0px)}
+#tab0 .lightbox img{flex:1;min-height:0;width:100%;object-fit:contain}
+#tab0 .lb-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;color:#fff;padding:12px 4px;font-size:.85rem;direction:ltr}
+#tab0 .lb-bar button{background:#fff;color:#000;border:0;border-radius:8px;padding:8px 16px;font:inherit;font-weight:700;cursor:pointer}
+#tab0 button:focus-visible,#tab0 input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
 /* ===== التبويب 1: صور إلى PDF ===== */
 #tab1{display:flex;justify-content:center;padding-block:16px}
 #tab1 .app{width:100%;max-width:640px;display:flex;flex-direction:column;gap:20px}
@@ -170,6 +225,8 @@ body{background:var(--bg);color:var(--ink);font-family:"Tajawal","Cairo",system-
   <div class="shell-inner">
     <p class="brand">معالجة البلاغات</p>
     <nav class="tabs" role="tablist">
+      <button class="tab" id="tabBtn0" role="tab" aria-selected="false" data-tab="0"><span class="n">📷</span>الكاميرا</button>
+      <span class="arrow">←</span>
       <button class="tab" id="tabBtn1" role="tab" aria-selected="true" data-tab="1"><span class="n">1</span>صور إلى PDF</button>
       <span class="arrow">←</span>
       <button class="tab" id="tabBtn2" role="tab" aria-selected="false" data-tab="2"><span class="n">2</span>استخراج الرقم والصورة</button>
@@ -182,6 +239,67 @@ body{background:var(--bg);color:var(--ink);font-family:"Tajawal","Cairo",system-
 <div class="panels">
 
 <!-- ================= التبويب 1 ================= -->
+<section id="tab0" role="tabpanel" hidden>
+<div class="cam">
+  <header class="cam-head">
+    <h1>الكاميرا الميدانية</h1>
+    <p>صوّر عدة صور متتالية. يُطبع على كل صورة الوقت والإحداثيات، وتبقى محفوظة في جهازك حتى لو خرجت من الصفحة.</p>
+  </header>
+
+  <div class="gps" id="gpsPill" data-state="wait"><span class="dot"></span><span id="gpsText">جاري تحديد الموقع…</span></div>
+
+  <div class="viewer" id="viewer">
+    <video id="camVideo" playsinline muted autoplay></video>
+    <div class="vf-empty" id="vfEmpty">
+      <label class="cam-open" id="camNative">📸 التقط صورة
+        <input type="file" id="camInput" accept="image/*" capture="environment">
+      </label>
+      <label class="cam-alt">إضافة صور من المعرض
+        <input type="file" id="galInput" accept="image/*" multiple>
+      </label>
+      <button id="camStart" class="cam-alt cam-live" type="button">تجربة الكاميرا المباشرة داخل الصفحة</button>
+      <p class="cam-tip">تنفتح كاميرا الجوال. بعد كل صورة ترجع هنا تلقائياً، واضغط مرة ثانية لصورة جديدة.</p>
+      <p class="cam-err" id="camErr" hidden></p>
+    </div>
+    <div class="flash" id="flash"></div>
+    <div class="shot-count" id="shotCount" hidden></div>
+  </div>
+
+  <div class="controls" id="camControls" hidden>
+    <button id="camStop" class="round" type="button" aria-label="إغلاق الكاميرا">✕</button>
+    <button id="shutter" class="shutter" type="button" aria-label="التقاط صورة"></button>
+    <button id="camFlip" class="round" type="button" aria-label="تبديل الكاميرا الأمامية والخلفية">⇆</button>
+  </div>
+
+  <label class="note">نص إضافي يُطبع على الصورة (اختياري)
+    <input id="camNote" type="text" placeholder="مثال: رقم البلاغ أو اسم الموقع">
+  </label>
+
+  <section class="gal">
+    <div class="gal-head">
+      <b id="galCount">لا توجد صور محفوظة</b>
+      <button type="button" class="link-btn" id="selAll">تحديد الكل</button>
+    </div>
+    <div class="gallery" id="gallery"></div>
+    <p class="gal-empty" id="galEmpty">الصور التي تلتقطها تظهر هنا وتبقى محفوظة.</p>
+    <div class="gal-actions" id="galActions" hidden>
+      <button type="button" class="act primary-act" id="sendSel">إرسال المحدد إلى «صور إلى PDF»</button>
+      <button type="button" class="act" id="saveSel">⬇️ حفظ في الجهاز</button>
+      <button type="button" class="act danger-act" id="delSel">🗑 حذف المحدد</button>
+    </div>
+    <p class="hint-s" id="storeNote"></p>
+  </section>
+</div>
+
+<div class="lightbox" id="lightbox" hidden>
+  <img id="lbImg" alt="الصورة">
+  <div class="lb-bar">
+    <span id="lbInfo"></span>
+    <button type="button" id="lbClose">إغلاق</button>
+  </div>
+</div>
+</section>
+
 <section id="tab1" role="tabpanel">
 <div class="app">
   <header>
@@ -275,7 +393,8 @@ body{background:var(--bg);color:var(--ink);font-family:"Tajawal","Cairo",system-
   <div id="settings" class="hidden">
     <div class="row">
       <label>عمود رقم البلاغ: <select id="reportCol"></select></label>
-      <label>اتجاه الدمج للكل:
+
+            <label>اتجاه الدمج للكل:
         <select id="direction">
           <option value="h">أفقي (جنب بعض)</option>
           <option value="v">عمودي (فوق بعض)</option>
@@ -346,13 +465,20 @@ window.Pipeline = (function(){
   var current = 1;
   function show(n){
     current = n;
-    [1,2,3].forEach(function(k){
+    [0,1,2,3].forEach(function(k){
       document.getElementById('tab'+k).hidden = k !== n;
       document.getElementById('tabBtn'+k).setAttribute('aria-selected', k === n ? 'true' : 'false');
     });
+    try { localStorage.setItem('lastTab', String(n)); } catch(_) {}
     window.scrollTo({top:0, behavior:'smooth'});
     window.dispatchEvent(new Event('resize')); // لضبط عرض المحرر في التبويب 2
+    window.dispatchEvent(new CustomEvent('tabchange', {detail:n}));
   }
+  // الرجوع لآخر تبويب كان مفتوحاً
+  setTimeout(function(){
+    var last = null; try { last = localStorage.getItem('lastTab'); } catch(_) {}
+    if (last !== null && last !== '1' && /^[0-3]$/.test(last)) show(+last);
+  }, 0);
   function markReady(n){ document.getElementById('tabBtn'+n).classList.add('ready'); }
   document.querySelectorAll('.tab').forEach(function(b){
     b.addEventListener('click', function(){ show(+b.dataset.tab); });
@@ -363,9 +489,311 @@ window.Pipeline = (function(){
     // تُعرَّف داخل كل أداة
     receivePdf: null,
     receiveXlsx: null,
+    receiveImages: null,
+    sendImages: function(files){ markReady(0); show(1); if (this.receiveImages) this.receiveImages(files); },
     sendPdf: function(file){ markReady(1); show(2); if (this.receivePdf) this.receivePdf(file); },
     sendXlsx: function(bytes){ markReady(2); show(3); if (this.receiveXlsx) return this.receiveXlsx(bytes); }
   };
+})();
+</script>
+
+<!-- ================= كود تبويب الكاميرا ================= -->
+<script>
+(function(){
+"use strict";
+const $ = id => document.getElementById(id);
+const video = $('camVideo'), viewer = $('viewer');
+let stream = null, facing = 'environment', wasLive = false;
+let lastPos = null, watchId = null;
+let photos = [];            // {id, blob, url, time, lat, lon, acc, note}
+const selected = new Set();
+let db = null, memoryOnly = false;
+
+// ---------- التخزين الدائم (IndexedDB) ----------
+function openDb(){
+  return new Promise((res, rej) => {
+    const r = indexedDB.open('field-camera', 1);
+    r.onupgradeneeded = () => r.result.createObjectStore('photos', { keyPath: 'id' });
+    r.onsuccess = () => res(r.result);
+    r.onerror = () => rej(r.error);
+  });
+}
+function tx(mode, fn){
+  return new Promise((res, rej) => {
+    const t = db.transaction('photos', mode), st = t.objectStore('photos');
+    const out = fn(st);
+    t.oncomplete = () => res(out && out.result);
+    t.onerror = () => rej(t.error);
+  });
+}
+async function dbPut(p){ if (db) await tx('readwrite', st => st.put({ id:p.id, blob:p.blob, time:p.time, lat:p.lat, lon:p.lon, acc:p.acc, note:p.note })); }
+async function dbDel(id){ if (db) await tx('readwrite', st => st.delete(id)); }
+async function dbAll(){ return db ? await tx('readonly', st => st.getAll()) : []; }
+
+async function initStore(){
+  try {
+    db = await openDb();
+    const all = (await dbAll()) || [];
+    all.sort((a, b) => a.time - b.time);
+    photos = all.map(p => Object.assign(p, { url: URL.createObjectURL(p.blob) }));
+    let persisted = false;
+    try { if (navigator.storage && navigator.storage.persist) persisted = await navigator.storage.persist(); } catch(_) {}
+    $('storeNote').textContent = persisted
+      ? 'الصور محفوظة في ذاكرة هذا المتصفح بشكل دائم. لا تمسح بيانات المتصفح حتى تنقلها.'
+      : 'الصور محفوظة في ذاكرة هذا المتصفح. لا تمسح بيانات المتصفح حتى تنقلها.';
+  } catch (e) {
+    console.error(e); memoryOnly = true;
+    $('storeNote').textContent = '⚠️ المتصفح لا يسمح بالحفظ الدائم هنا (ربما نافذة خاصة). احفظ الصور في الجهاز قبل إغلاق الصفحة.';
+  }
+  renderGallery();
+}
+
+// ---------- الموقع ----------
+function startGps(){
+  if (watchId !== null) return;
+  const pill = $('gpsPill'), txt = $('gpsText');
+  if (!navigator.geolocation){ pill.dataset.state = 'err'; txt.textContent = 'الجهاز لا يدعم تحديد الموقع'; return; }
+  watchId = navigator.geolocation.watchPosition(pos => {
+    lastPos = { lat: pos.coords.latitude, lon: pos.coords.longitude, acc: pos.coords.accuracy, at: Date.now() };
+    pill.dataset.state = 'ok';
+    txt.textContent = `الموقع جاهز · دقة ±${Math.round(lastPos.acc)} م`;
+  }, err => {
+    pill.dataset.state = 'err';
+    txt.textContent = err.code === 1 ? 'اسمح للصفحة باستخدام الموقع من إعدادات المتصفح' : 'تعذّر تحديد الموقع، تأكد من تشغيل GPS';
+    watchId = null;
+  }, { enableHighAccuracy: true, maximumAge: 5000, timeout: 30000 });
+}
+function currentPos(){ return lastPos && (Date.now() - lastPos.at < 3 * 60 * 1000) ? lastPos : null; }
+
+// ---------- الكاميرا ----------
+async function startCam(){
+  $('camErr').hidden = true;
+  startGps();
+  if (!window.isSecureContext || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    showCamErr('المتصفح لا يسمح بالكاميرا المباشرة لملف مفتوح من الجوال. استخدم زر «📸 التقط صورة» — يعمل دائماً.'); return;
+  }
+  stopCam();
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: { ideal: facing }, width: { ideal: 1920 }, height: { ideal: 1080 } }, audio: false
+    });
+    video.srcObject = stream; await video.play().catch(() => {});
+    viewer.classList.add('live'); $('camControls').hidden = false; wasLive = true;
+  } catch (e) {
+    console.error(e);
+    showCamErr(e.name === 'NotAllowedError'
+      ? 'لم يُسمح باستخدام الكاميرا. فعّل الإذن من إعدادات المتصفح، أو استخدم زر «📸 التقط صورة».'
+      : 'تعذّر فتح الكاميرا المباشرة. استخدم زر «📸 التقط صورة».');
+  }
+}
+function stopCam(){
+  if (stream){ stream.getTracks().forEach(t => t.stop()); stream = null; }
+  video.srcObject = null; viewer.classList.remove('live'); $('camControls').hidden = true;
+}
+function showCamErr(m){ const e = $('camErr'); e.textContent = m; e.hidden = false; }
+
+// ---------- الطباعة على الصورة (الوقت + الإحداثيات) ----------
+function fmtTime(d){
+  const p = n => String(n).padStart(2, '0');
+  let h = d.getHours(); const ap = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12;
+  return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()} ${h}:${p(d.getMinutes())}:${p(d.getSeconds())} ${ap}`;
+}
+function stamp(canvas, info){
+  const ctx = canvas.getContext('2d'), W = canvas.width, H = canvas.height;
+  const s = Math.max(W, H) / 1600, fs = Math.round(Math.max(14, 30 * s)), pad = Math.round(fs * 0.6), lh = Math.round(fs * 1.4);
+  const lines = [];
+  lines.push(info.lat != null ? `📍 X ${info.lon.toFixed(6)}, Y ${info.lat.toFixed(6)}` + (info.acc != null ? `  (±${Math.round(info.acc)}m)` : '') : '📍 بدون إحداثيات');
+  lines.push(`🕒 ${fmtTime(new Date(info.time))}`);
+  if (info.note) lines.push(info.note);
+  ctx.font = `bold ${fs}px Cairo, Tahoma, Arial, sans-serif`;
+  const tw = Math.max(...lines.map(l => ctx.measureText(l).width));
+  const bw = tw + pad * 2, bh = lines.length * lh + pad, x = Math.round(fs * 0.7), y = H - bh - Math.round(fs * 0.7);
+  ctx.fillStyle = 'rgba(0,0,0,.55)';
+  const r = fs * 0.4; ctx.beginPath();
+  ctx.moveTo(x + r, y); ctx.arcTo(x + bw, y, x + bw, y + bh, r); ctx.arcTo(x + bw, y + bh, x, y + bh, r);
+  ctx.arcTo(x, y + bh, x, y, r); ctx.arcTo(x, y, x + bw, y, r); ctx.fill();
+  ctx.fillStyle = '#ffffff'; ctx.textBaseline = 'middle';
+  lines.forEach((l, i) => {
+    const ar = /[؀-ۿ]/.test(l) && i === 2;
+    ctx.direction = ar ? 'rtl' : 'ltr'; ctx.textAlign = ar ? 'right' : 'left';
+    ctx.fillText(l, ar ? x + bw - pad : x + pad, y + pad / 2 + lh * i + lh / 2);
+  });
+  ctx.direction = 'ltr'; ctx.textAlign = 'left';
+}
+
+// ---------- قراءة الموقع والوقت المحفوظين داخل الصورة (EXIF) ----------
+async function readExif(file){
+  try {
+    const buf = await file.slice(0, 256 * 1024).arrayBuffer(), v = new DataView(buf);
+    if (v.getUint16(0) !== 0xFFD8) return null;
+    let o = 2;
+    while (o + 4 < v.byteLength){
+      const mk = v.getUint16(o), len = v.getUint16(o + 2);
+      if (mk === 0xFFE1 && v.getUint32(o + 4) === 0x45786966) return parseTiff(v, o + 10);
+      if ((mk & 0xFF00) !== 0xFF00) break;
+      o += 2 + len;
+    }
+  } catch (_) {}
+  return null;
+}
+function parseTiff(v, t){
+  const le = v.getUint16(t) === 0x4949;
+  const u16 = p => v.getUint16(p, le), u32 = p => v.getUint32(p, le);
+  const ifd = off => {
+    const out = {}, n = u16(t + off);
+    for (let i = 0; i < n; i++){
+      const e = t + off + 2 + i * 12, tag = u16(e), type = u16(e + 2), cnt = u32(e + 4);
+      const size = { 1:1, 2:1, 3:2, 4:4, 5:8, 7:1 }[type] || 1, vo = cnt * size > 4 ? t + u32(e + 8) : e + 8;
+      if (type === 2){ let s = ''; for (let k = 0; k < cnt - 1; k++) s += String.fromCharCode(v.getUint8(vo + k)); out[tag] = s; }
+      else if (type === 5){ const a = []; for (let k = 0; k < cnt; k++) a.push(u32(vo + k * 8) / (u32(vo + k * 8 + 4) || 1)); out[tag] = a; }
+      else if (type === 3) out[tag] = u16(vo);
+      else if (type === 4) out[tag] = u32(vo);
+    }
+    return out;
+  };
+  const r = {}, i0 = ifd(u32(t + 4));
+  if (i0[0x8769]){ const ex = ifd(i0[0x8769]), d = ex[0x9003] || i0[0x0132];
+    if (d){ const m = d.match(/(\d{4}):(\d{2}):(\d{2}) (\d{2}):(\d{2}):(\d{2})/); if (m) r.time = new Date(+m[1], m[2] - 1, +m[3], +m[4], +m[5], +m[6]).getTime(); } }
+  if (i0[0x8825]){ const g = ifd(i0[0x8825]), dms = a => a && a.length === 3 ? a[0] + a[1] / 60 + a[2] / 3600 : null;
+    let lat = dms(g[2]), lon = dms(g[4]);
+    if (lat != null && lon != null && (lat || lon)){ if (g[1] === 'S') lat = -lat; if (g[3] === 'W') lon = -lon; r.lat = lat; r.lon = lon; } }
+  return r;
+}
+
+async function savePhotoFromSource(src, w, h, over){
+  const pos = currentPos(), info = {
+    time: Date.now(), lat: pos ? pos.lat : null, lon: pos ? pos.lon : null, acc: pos ? pos.acc : null,
+    note: $('camNote').value.trim()
+  };
+  if (over){
+    if (over.time) info.time = over.time;
+    if (over.lat != null && (info.lat == null || over.preferExif)){ info.lat = over.lat; info.lon = over.lon; info.acc = null; }
+  }
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  c.getContext('2d').drawImage(src, 0, 0, w, h);
+  stamp(c, info);
+  const blob = await new Promise(r => c.toBlob(r, 'image/jpeg', 0.92));
+  const p = Object.assign({ id: info.time + '-' + Math.random().toString(36).slice(2, 7), blob, url: URL.createObjectURL(blob) }, info);
+  photos.push(p);
+  try { await dbPut(p); } catch (e) { console.error(e); $('storeNote').textContent = '⚠️ تعذّر حفظ صورة في ذاكرة الجهاز (قد تكون الذاكرة ممتلئة).'; }
+  renderGallery();
+  return p;
+}
+
+async function shoot(){
+  if (!stream || !video.videoWidth) return;
+  const f = $('flash'); f.classList.add('on'); requestAnimationFrame(() => requestAnimationFrame(() => f.classList.remove('on')));
+  if (navigator.vibrate) try { navigator.vibrate(30); } catch(_) {}
+  await savePhotoFromSource(video, video.videoWidth, video.videoHeight);
+  const sc = $('shotCount'); sc.hidden = false; sc.textContent = `${photos.length} صورة`;
+}
+
+// fresh = صورة التُقطت الآن بالكاميرا (نستخدم الوقت والموقع الحاليين)، وإلا صورة من المعرض (نفضّل بياناتها)
+async function fromFiles(files, fresh){
+  startGps();
+  let n = 0, noGps = 0;
+  for (const file of files){
+    try {
+      const ex = (await readExif(file)) || {};
+      const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = URL.createObjectURL(file); });
+      const over = fresh ? { lat: ex.lat, lon: ex.lon } : { time: ex.time, lat: ex.lat, lon: ex.lon, preferExif: true };
+      const p = await savePhotoFromSource(img, img.naturalWidth, img.naturalHeight, over);
+      URL.revokeObjectURL(img.src); n++; if (p.lat == null) noGps++;
+    } catch (e) { console.error(e); showCamErr('تعذّر قراءة إحدى الصور.'); }
+  }
+  if (noGps) showCamErr(`حُفظت ${n} صورة، منها ${noGps} بدون إحداثيات. شغّل الموقع (GPS) واسمح للمتصفح باستخدامه، أو فعّل «حفظ الموقع» في إعدادات كاميرا الجوال.`);
+  else if (n) { $('camErr').hidden = true; }
+}
+
+// ---------- المعرض ----------
+function renderGallery(){
+  const g = $('gallery'); g.innerHTML = '';
+  photos.slice().reverse().forEach(p => {
+    const d = document.createElement('div');
+    d.className = 'ph' + (selected.has(p.id) ? ' sel' : '');
+    const hasAll = p.lat != null && p.time;
+    d.innerHTML = `<img alt="">
+      <span class="chk">✓</span>
+      <span class="ok ${hasAll ? '' : 'warn'}">${hasAll ? '✓ وقت + إحداثيات' : '⚠ بدون إحداثيات'}</span>
+      <button type="button" class="view">عرض</button>
+      <span class="tag"></span>`;
+    d.querySelector('img').src = p.url;
+    d.querySelector('.tag').textContent = fmtTime(new Date(p.time));
+    d.onclick = e => {
+      if (e.target.classList.contains('view')) { openLb(p); return; }
+      selected.has(p.id) ? selected.delete(p.id) : selected.add(p.id); renderGallery();
+    };
+    g.appendChild(d);
+  });
+  const n = photos.length, k = selected.size;
+  $('galCount').textContent = n ? `${n} صورة محفوظة${k ? ` · المحدد ${k}` : ''}` : 'لا توجد صور محفوظة';
+  $('galEmpty').hidden = n > 0; $('galActions').hidden = n === 0; $('selAll').hidden = n === 0;
+  $('selAll').textContent = k === n && n ? 'إلغاء التحديد' : 'تحديد الكل';
+  ['sendSel', 'saveSel', 'delSel'].forEach(id => $(id).disabled = k === 0);
+  $('sendSel').textContent = `إرسال المحدد إلى «صور إلى PDF» (${k})`;
+  if (!delArmed) $('delSel').textContent = `🗑 حذف المحدد (${k})`;
+}
+function chosen(){ return photos.filter(p => selected.has(p.id)); }
+function fileOf(p, i){ return new File([p.blob], `photo_${i + 1}_${new Date(p.time).toISOString().slice(0, 19).replace(/[:T]/g, '-')}.jpg`, { type: 'image/jpeg' }); }
+
+function openLb(p){
+  $('lbImg').src = p.url;
+  $('lbInfo').textContent = (p.lat != null ? `X ${p.lon.toFixed(6)}, Y ${p.lat.toFixed(6)} · ` : '') + fmtTime(new Date(p.time));
+  $('lightbox').hidden = false;
+}
+$('lbClose').onclick = () => { $('lightbox').hidden = true; };
+
+$('selAll').onclick = () => {
+  if (selected.size === photos.length) selected.clear(); else photos.forEach(p => selected.add(p.id));
+  renderGallery();
+};
+$('sendSel').onclick = () => {
+  const files = chosen().map(fileOf);
+  if (files.length) window.Pipeline.sendImages(files);
+};
+$('saveSel').onclick = async () => {
+  const files = chosen().map(fileOf);
+  if (!files.length) return;
+  try {
+    if (navigator.canShare && navigator.canShare({ files })) { await navigator.share({ files }); return; }
+  } catch (e) { if (e.name === 'AbortError') return; }
+  for (const f of files){
+    const a = document.createElement('a'); a.href = URL.createObjectURL(f); a.download = f.name;
+    document.body.append(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 30000);
+    await new Promise(r => setTimeout(r, 400));
+  }
+};
+let delArmed = false;
+$('delSel').onclick = async () => {
+  if (!delArmed){
+    delArmed = true; $('delSel').textContent = `اضغط مرة ثانية لتأكيد حذف ${selected.size}`;
+    setTimeout(() => { delArmed = false; renderGallery(); }, 4000); return;
+  }
+  delArmed = false;
+  for (const p of chosen()){ URL.revokeObjectURL(p.url); try { await dbDel(p.id); } catch(_) {} }
+  photos = photos.filter(p => !selected.has(p.id)); selected.clear(); renderGallery();
+};
+
+// ---------- الأزرار ----------
+$('camStart').onclick = startCam;
+$('camStop').onclick = () => { wasLive = false; stopCam(); $('shotCount').hidden = true; };
+$('camFlip').onclick = () => { facing = facing === 'environment' ? 'user' : 'environment'; startCam(); };
+$('shutter').onclick = shoot;
+$('camInput').onchange = async e => { const fs = Array.from(e.target.files || []); e.target.value = ''; if (fs.length) await fromFiles(fs, true); };
+$('galInput').onchange = async e => { const fs = Array.from(e.target.files || []); e.target.value = ''; if (fs.length) await fromFiles(fs, false); };
+$('camNative').addEventListener('click', startGps);
+
+// إيقاف الكاميرا عند ترك التبويب أو إخفاء الصفحة، وإرجاعها عند العودة
+window.addEventListener('tabchange', e => {
+  if (e.detail === 0) { startGps(); if (wasLive && !stream) startCam(); }
+  else if (stream) stopCam();
+});
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) { if (stream) stopCam(); }
+  else if (wasLive && !$('tab0').hidden) startCam();
+});
+
+initStore();
 })();
 </script>
 
@@ -594,7 +1022,8 @@ window.Pipeline = (function(){
         format: [mmFromPx(firstEl.width), mmFromPx(firstEl.height)]
       });
     } else {
-      doc = new jsPDFCtor({
+
+          doc = new jsPDFCtor({
         orientation: "portrait",
         unit: "mm",
         format: pageSize === "letter" ? "letter" : "a4"
@@ -676,6 +1105,9 @@ window.Pipeline = (function(){
     images.forEach(function(i){ i.rot = ((i.rot || 0) + 90) % 360; });
     render();
   });
+
+  // استقبال صور الكاميرا
+  window.Pipeline.receiveImages = function(files){ addFiles(files); setStatus("تمت إضافة " + files.length + " صورة من الكاميرا.", "ok"); };
 
   pdfDownloadBtn.addEventListener("click", function(){
     if (lastDoc) lastDoc.save("images.pdf");
